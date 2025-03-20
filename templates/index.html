@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asena Web Arayüzü</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Asena Asistan</h1>
+            <div id="status">
+                <p>Bağlantı Durumu: <span id="connection-status">Bağlanıyor...</span></p>
+                <p>Tarih/Saat: <span id="current-time"></span></p>
+            </div>
+        </header>
+
+        <main>
+            <div class="chat-container">
+                <div id="chat-messages"></div>
+                <div class="input-area">
+                    <input type="text" id="command-input" placeholder="Bir komut yazın...">
+                    <button id="send-btn">Gönder</button>
+                    <button id="mic-btn">🎤</button>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <h3>Ses Kontrolü</h3>
+                    <input type="range" id="volume-slider" min="0" max="100">
+                    <button onclick="muteAudio()">Sessiz</button>
+                </div>
+
+                <div class="control-group">
+                    <h3>Parlaklık Kontrolü</h3>
+                    <input type="range" id="brightness-slider" min="0" max="100">
+                </div>
+
+                <div class="control-group">
+                    <h3>Işık Kontrolü</h3>
+                    <select id="room-select">
+                        <option value="bedroom">Yatak Odası</option>
+                        <option value="living">Salon</option>
+                        <option value="kitchen">Mutfak</option>
+                    </select>
+                    <button onclick="toggleLight()">Aç/Kapat</button>
+                    <input type="range" id="light-slider" min="0" max="100">
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
